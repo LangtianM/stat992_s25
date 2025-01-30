@@ -11,6 +11,8 @@ What makes model interpretable?
 - Modularity: Can the model be broken down?
 
 # Saliency Maps
+## Adventurous Begining
+- 
 ## Axiomatic attribution
 [Axiomatic Attribution for Deep Networks](zotero://select/items/@sundararajanAxiomaticAttributionDeep2017)
 2017; PMLR; Mukund Sundararajan, Ankur Taly, Qiqi Yan
@@ -34,4 +36,19 @@ Property: **Completeness**: the attributions add up to the difference between th
 [Sanity Checks for Saliency Maps](zotero://select/items/@adebayoSanityChecksSaliency2020)
 2020; Julius Adebayo, Justin Gilmer, Michael Muelly, Ian Goodfellow, Moritz Hardt, Been Kim
 
-## 
+###  Model parametxer randomization test.
+Does the saliency method depend on the model?
+	Trained model v.s. randomly initialized model
+
+> Why some methods are invariant under randomized reparameterization?
+#### Cascading Randomization
+  Randomize the weights of a model starting from the top layer all the way to the bottom layers.
+  ![[attachments/Pasted image 20250129184516.png]]
+> Guided BP is just insensitive to the top layers in this exmaple. Does this **really** tells us it's a bad method ?
+
+![[attachments/Pasted image 20250129185247.png]]
+  
+#### Data randomization test
+the saliency method depends on the trianing data?
+	Training model with labeled data v.s.  with randomly labeled data
+![[attachments/Pasted image 20250129190932.png]]
