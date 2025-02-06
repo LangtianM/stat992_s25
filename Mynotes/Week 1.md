@@ -1,4 +1,4 @@
-# Convext and Motivation
+# Context and Motivation
 [Towards A Rigorous Science of Interpretable Machine Learning](zotero://select/items/@doshi-velezRigorousScienceInterpretable2017)
 2017; Finale Doshi-Velez, Been Kim
 - Fairness
@@ -84,4 +84,5 @@ $$
 $$
 -  Use as small mask as one can.
 - Prefer simple mask.
-- Predict on "deleted" image.
+- Predict on "deleted" image. 
+
