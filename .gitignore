@@ -16,3 +16,4 @@ hw1/log/LightGCN/LightGCN-ml-100k-Feb-10-2025_16-18-37-21a7c2.log
 hw1/ml-1m/movies.dat
 hw1/ml-1m/ratings.dat
 hw1/ml-1m/users.dat
+hw1/lightgcn.pth
