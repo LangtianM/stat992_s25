@@ -1,0 +1,114 @@
+<TMU|<tuple|1.1.0|2025.0.3>>
+
+<style|<tuple|generic|llm>>
+
+<\body>
+  <doc-data|<doc-title|Intepretability of the LightGCN Recommender System on MovieLens \ Dataset>|<doc-author|<author-data|<author-name|Langtian Ma>|<\author-affiliation>
+    <date>
+  </author-affiliation>>>>
+
+  <section|Introduction>
+
+  Recommender systems have become indispensable in digital platforms. However, a growing number of modern recommender systems relies on complex models like deep learning and graph neural networks. Their decision-making processes are often opaque. This lack of transparency undermines user trust, debugging <cite|ginscaCredibilityInformationRetrieval2015>, and raises ethical concerns, such as bias and fairness <cite|mehrabiSurveyBiasFairness2022>. The ability to explain why recommendatons are generated has thus become a critical research area. This report implements a slightly modified version of LightGCN <cite|heLightGCNSimplifyingPowering2020a>, trains it on the MovieLens 1M dataset <cite|harperMovieLensDatasetsHistory2015> and attributes feature importance for specific predictions using the integrated gradient method <cite|sundararajanAxiomaticAttributionDeep2017>. The approach successfully identifies key features of both users and movies that inluence the predictions.
+
+  <section|Problem Formulation>
+
+  Understanding which features most influnce recommendation decisions is crucial. In this report, we trained a modified LightGCN model with additional user features and item features informations on the <with|font-series|bold|MovieLens 1M dataset> <cite|harperMovieLensDatasetsHistory2015>. The MovieLens 1M dataset is a widely used benchmark dataset for evaluating recommender systems. It contains <with|font-series|bold|1 millioin ratings> from <with|font-series|bold|6,000 users> on <with|font-series|bold|4000 movies>, collected by the GroupLens research team. Each rating is an integer between 1 (worst) and 5 (best). In addition to the user-movie interactions, the dataset provides user demographic informtion (age, gender, occupation, and zip code) and moview metadata (title and genres). We use age, gender and occupation as user features, and genres as movie features in our model. After training the model, we try to answer key questions such as:
+
+  <\itemize>
+    <item>What user features most affect their recomendations?
+
+    <item>Which movie genres paly the most significant role in recoomendation scores?
+
+    <item>How do small changes in user or moview features affect predictions?
+  </itemize>
+
+  The primary beneficiaries of this analysis include:
+
+  <\itemize>
+    <item>End-users, who can better understand why a moview was recommended.
+
+    <item>Developers and researchers, who can debug and improve the model more eaily.
+
+    <item>Regulatory bodies, concered with fairness and transparencey in AI-based decision-making.
+  </itemize>
+
+  There has been a variety of approahes\ 
+
+  \;
+
+  \;
+
+  \;
+
+  \;
+
+  \;
+
+  <\bibliography|bib|tm-plain|../../../../My Library>
+    <\bib-list|5>
+      <bibitem*|1><label|bib-ginscaCredibilityInformationRetrieval2015>Alexandru<nbsp>L.<nbsp>Ginsca, Adrian Popescu<localize|, and >Mihai Lupu. <newblock>Credibility in Information Retrieval. <newblock>9(5):355-475.<newblock>
+
+      <bibitem*|2><label|bib-harperMovieLensDatasetsHistory2015>F.<nbsp>Maxwell Harper<localize| and >Joseph<nbsp>A.<nbsp>Konstan. <newblock>The MovieLens Datasets: History and Context. <newblock>5(4):19-1.<newblock>
+
+      <bibitem*|3><label|bib-heLightGCNSimplifyingPowering2020a>Xiangnan He, Kuan Deng, Xiang Wang, Yan Li, Yongdong Zhang<localize|, and >Meng Wang. <newblock>LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation.<newblock>
+
+      <bibitem*|4><label|bib-mehrabiSurveyBiasFairness2022>Ninareh Mehrabi, Fred Morstatter, Nripsuta Saxena, Kristina Lerman<localize|, and >Aram Galstyan. <newblock>A Survey on Bias and Fairness in Machine Learning.<newblock>
+
+      <bibitem*|5><label|bib-sundararajanAxiomaticAttributionDeep2017>Mukund Sundararajan, Ankur Taly<localize|, and >Qiqi Yan. <newblock>Axiomatic Attribution for Deep Networks. <newblock><localize|In ><with|font-shape|italic|Proceedings of the 34th International Conference on Machine Learning>, <localize|pages >3319-3328. PMLR.<newblock>
+    </bib-list>
+  </bibliography>
+
+  \;
+
+  \;
+</body>
+
+<\initial>
+  <\collection>
+    <associate|page-medium|paper>
+    <associate|page-screen-margin|false>
+  </collection>
+</initial>
+
+<\references>
+  <\collection>
+    <associate|auto-1|<tuple|1|1>>
+    <associate|auto-2|<tuple|2|1>>
+    <associate|auto-3|<tuple|<with|mode|<quote|math>|\<bullet\>>|2>>
+    <associate|auto-4|<tuple|<with|mode|<quote|math>|\<bullet\>>|?>>
+    <associate|auto-5|<tuple|2|?>>
+    <associate|bib-ginscaCredibilityInformationRetrieval2015|<tuple|1|2>>
+    <associate|bib-harperMovieLensDatasetsHistory2015|<tuple|2|2>>
+    <associate|bib-heLightGCNSimplifyingPowering2020a|<tuple|3|2>>
+    <associate|bib-mehrabiSurveyBiasFairness2022|<tuple|4|2>>
+    <associate|bib-sundararajanAxiomaticAttributionDeep2017|<tuple|5|2>>
+    <associate|example|<tuple|2|?>>
+    <associate|key-characteristics-of-the-beta-distribution|<tuple|1|?>>
+  </collection>
+</references>
+
+<\auxiliary>
+  <\collection>
+    <\associate|bib>
+      ginscaCredibilityInformationRetrieval2015
+
+      mehrabiSurveyBiasFairness2022
+
+      heLightGCNSimplifyingPowering2020a
+
+      harperMovieLensDatasetsHistory2015
+
+      sundararajanAxiomaticAttributionDeep2017
+
+      harperMovieLensDatasetsHistory2015
+    </associate>
+    <\associate|toc>
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Introduction> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>> <no-break><pageref|auto-1><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|2<space|2spc>Problem Formulation> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>> <no-break><pageref|auto-2><vspace|0.5fn>
+
+      <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|Bibliography> <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>> <no-break><pageref|auto-3><vspace|0.5fn>
+    </associate>
+  </collection>
+</auxiliary>
