@@ -20,3 +20,7 @@ hw1/lightgcn.pth
 hw1/# %% \[markdown].py
 hw1/stat992hw1.tmu~
 Mynotes/ex1.md
+hw2/__pycache__/DataProcessor.cpython-310.pyc
+*.pyc
+*.tm~
+

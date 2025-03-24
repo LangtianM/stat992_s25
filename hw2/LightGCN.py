@@ -6,8 +6,51 @@ class LightGCN(nn.Module):
     """
     Light Graph Convolutional Network for recommendation systems.
     
-    Combines collaborative filtering with user and item features.
+    Parameters
+    ----------
+    num_users : int
+        Total number of users in the dataset. Used to define the size of user embeddings.
+    
+    num_items : int
+        Total number of items in the dataset. Used to define the size of item embeddings.
+    
+    embedding_dim : int
+        Dimension of user and item embeddings. Higher dimensions can capture more complex
+        patterns but require more data and computation.
+    
+    n_layers : int
+        Number of graph convolutional layers. More layers allow information to propagate
+        further in the graph but may lead to over-smoothing with too many layers.
+    
+    user_feat_dim : int
+        Dimension of raw user features. Used to define the projection from user features
+        to embedding space.
+    
+    item_feat_dim : int
+        Dimension of raw item features. Used to define the projection from item features
+        to embedding space.
+    
+    Attributes
+    ----------
+    user_embedding : nn.Embedding
+        Learnable embeddings for users.
+    
+    item_embedding : nn.Embedding
+        Learnable embeddings for items.
+    
+    user_feat_fc : nn.Linear
+        Linear projection from user features to embedding space.
+    
+    item_feat_fc : nn.Linear
+        Linear projection from item features to embedding space.
+        
+    final_user_embedding : torch.Tensor
+        Final user embeddings after encoding the feature information.
+        
+    final_item_embedding : torch.Tensor
+        Final item embeddings after encoding the feature information.
     """
+    
     
     def __init__(self, num_users, num_items, embedding_dim, n_layers, 
                  user_feat_dim, item_feat_dim):
@@ -34,6 +77,7 @@ class LightGCN(nn.Module):
         self.user_feat_fc = nn.Linear(user_feat_dim, embedding_dim)
         self.item_feat_fc = nn.Linear(item_feat_dim, embedding_dim)
         
+        # Final embeddings with feature informaton encoded
         self.final_user_embedding = None
         self.final_item_embedding = None
         
@@ -62,6 +106,7 @@ class LightGCN(nn.Module):
         Returns:
             Tuple of (user_embeddings, item_embeddings)
         """
+    
         # Standardize features
         user_features = (user_features - user_features.mean(dim=0)) / (user_features.std(dim=0) + 1e-8)
         item_features = (item_features - item_features.mean(dim=0)) / (item_features.std(dim=0) + 1e-8)
@@ -94,11 +139,11 @@ class LightGCN(nn.Module):
         
         return user_final, item_final
     
-    def get_final_embeddings(self):
-        """Get the final user and item embeddings."""
-        with torch.no_grad:
+    def get_final_embeddings(self, adj, user_features, item_features):
+        """Get the final user and item embeddings with feature information encoded."""
+        with torch.no_grad():
             self.final_user_embedding, self.final_item_embedding = self(
-                self.adj_matrix, self.user_features, self.item_features)
+                adj, user_features, item_features)
 
         return self.final_user_embedding, self.final_item_embedding
     

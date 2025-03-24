@@ -3,8 +3,69 @@ import numpy as np
 import pandas as pd
 import scipy.sparse as sp
 
-class DataProcessor:
-    """Handles data loading and preprocessing for the recommendation system."""
+class MovieDataProcessor:
+    """
+    Handles data loading and preprocessing for recommendation systems.
+    
+    This class is responsible for loading user, item, and interaction data,
+    creating mappings between original IDs and internal indices, building
+    adjacency matrices, and preparing feature tensors for the model.
+    
+    Parameters
+    ----------
+    ratings_path : str
+        Path to the file containing user-item interactions/ratings data.
+        Expected format is a delimiter-separated file with user, item, rating columns.
+    
+    movies_path : str
+        Path to the file containing movie/item metadata.
+        Expected format is a delimiter-separated file with item ID, title, genres columns.
+    
+    users_path : str
+        Path to the file containing user metadata.
+        Expected format is a delimiter-separated file with user ID, demographics columns.
+    
+    Attributes
+    ----------
+    user_mapping : dict
+        Mapping from original user IDs to internal indices.
+    
+    item_mapping : dict
+        Mapping from original item IDs to internal indices.
+    
+    genre_mapping : dict
+        Mapping from genre names to internal indices.
+    
+    inv_genre_mapping : dict
+        Inverse mapping from genre indices to names.
+    
+    data : pandas.DataFrame
+        Processed interaction data with mapped user and item indices.
+    
+    movies : pandas.DataFrame
+        Processed movie data with mapped item indices.
+    
+    users : pandas.DataFrame
+        Processed user data with mapped user indices.
+    
+    num_users : int
+        Total number of unique users.
+    
+    num_items : int
+        Total number of unique items.
+    
+    user_features : torch.Tensor
+        Tensor of user features (gender, age, occupation one-hot encoding).
+    
+    item_features : torch.Tensor
+        Tensor of item features (genre multi-hot encoding).
+    
+    adj_matrix : torch.Tensor
+        Normalized adjacency matrix for the user-item interaction graph.
+    
+    index_to_occ : dict
+        Mapping from occupation indices to occupation names.
+    """
     
     def __init__(self, ratings_path, movies_path, users_path):
         """
@@ -64,7 +125,7 @@ class DataProcessor:
         
     def load_data(self):
         """Load and preprocess datasets."""
-        # Load raw data
+        # Load raw data 
         self.data = pd.read_csv(self.ratings_path, sep="::", 
                               names=["user", "item", "rating", "timestamp"], 
                               engine="python")

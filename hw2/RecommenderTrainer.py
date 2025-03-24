@@ -3,7 +3,41 @@ import torch.optim as optim
 import torch.nn as nn
 
 class RecommenderTrainer:
-    """Handles training and evaluation of recommender models."""
+    """
+    Handles training and evaluation of recommender models.
+    
+    This class provides methods to train a recommendation model using 
+    gradient-based optimization and evaluate its performance. It also
+    provides utilities to save and load model weights.
+    
+    Parameters
+    ----------
+    model : nn.Module
+        The recommender model to train. Expected to be a LightGCN instance
+        or similar model with compatible forward interface.
+    
+    data_processor : DataProcessor
+        Data processor containing the dataset and preprocessed features.
+        Used to access training data and adjacency matrices.
+    
+    learning_rate : float, default=0.01
+        Learning rate for the optimizer. Controls how large the weight
+        updates are during training.
+    
+    Attributes
+    ----------
+    model : nn.Module
+        The recommender model being trained.
+    
+    data : MovieDataProcessor
+        The data processor with dataset information.
+    
+    optimizer : torch.optim.Optimizer
+        Optimizer used for model training (Adam by default).
+    
+    criterion : nn.Module
+        Loss function used for training (BCEWithLogitsLoss by default).
+    """
     
     def __init__(self, model, data_processor, learning_rate=0.01):
         """
@@ -55,7 +89,8 @@ class RecommenderTrainer:
             
             print(f"Epoch {epoch+1}/{epochs}, Loss: {loss.item():.4f}")
             
-        self.model.get_final_embeddings()
+        self.model.get_final_embeddings(
+            self.data.adj_matrix, self.data.user_features, self.data.item_features)
     
     def save_model(self, path):
         """Save model weights to file."""
