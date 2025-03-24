@@ -35,6 +35,7 @@ Fix $x_{s}$, as current sample's values, average over all other features.
 $\left.\phi_i(v)=\frac{1}{|D|!} \sum_{\pi \subseteq \Pi(D)}\left(v\left(\operatorname{Pre}^i \pi\right) \cup\{i\}\right)-v\left(\operatorname{Pr}^i(\pi)\right)\right)$.
 > Sampling from conditional distribution could be very expensive
 
+
 [L-Shapley and C-Shapley: Efficient Model Interpretation for Structured Data](zotero://select/items/@chenLShapleyCShapleyEfficient2018)
 2018; Jianbo Chen, Le Song, Martin J. Wainwright, Michael I. Jordan
 **Local Shapley:** only perturbs the neighboring features of a given feature
