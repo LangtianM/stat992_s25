@@ -1,0 +1,3 @@
+- HCI
+- Multimodality deep learning
+- Multivaraite stats **Carl**
