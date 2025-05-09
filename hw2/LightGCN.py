@@ -116,10 +116,12 @@ class LightGCN(nn.Module):
         item_feat_embed = self.item_feat_fc(item_features)
         
         # Combine embeddings with features
-        user_combined = torch.layer_norm(
-            self.user_embedding.weight + user_feat_embed, [self.embedding_dim])
-        item_combined = torch.layer_norm(
-            self.item_embedding.weight + item_feat_embed, [self.embedding_dim])
+        user_combined = torch.nn.functional.layer_norm(
+            self.user_embedding.weight + user_feat_embed, 
+            normalized_shape=[self.embedding_dim])
+        item_combined = torch.nn.functional.layer_norm(
+            self.item_embedding.weight + item_feat_embed, 
+            normalized_shape=[self.embedding_dim])
         
         # Initialize embeddings for message passing
         all_embeddings = torch.cat([user_combined, item_combined], dim=0)
@@ -140,7 +142,7 @@ class LightGCN(nn.Module):
         return user_final, item_final
     
     def get_final_embeddings(self, adj, user_features, item_features):
-        """Get the final user and item embeddings with feature information encoded."""
+        """Get the final user and item eings with feature information encoded."""
         with torch.no_grad():
             self.final_user_embedding, self.final_item_embedding = self(
                 adj, user_features, item_features)

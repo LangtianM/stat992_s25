@@ -198,6 +198,8 @@ class MovieDataProcessor:
                            shape=(self.num_users + self.num_items, 
                                   self.num_users + self.num_items))
         
+        adj = adj+sp.eye(adj.shape[0])
+        
         # Make the graph undirected
         adj = adj + adj.T
         
